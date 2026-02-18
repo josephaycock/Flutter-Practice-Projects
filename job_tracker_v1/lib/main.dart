@@ -69,37 +69,62 @@ class _MyHomePageState extends State<MyHomePage> {
 class HomeScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 4,
-      child: Scaffold(
+    return Scaffold(
         body: Column(
           children: [
-            const TabBar(
-              labelStyle: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.bold
-              ),
-              tabs: [
-                Tab(icon: Icon(Icons.send), text: "Applied"),
-                Tab(icon: Icon(Icons.videocam), text: "Interview"),
-                Tab(icon: Icon(Icons.handshake), text: "Offered"),
-                Tab(icon: Icon(Icons.cancel_outlined), text: "Rejected"),
-              ],
-            ),
-            const Expanded(
-              child: TabBarView(
-                children: [
-                  Center(child: Text("Applied"),),
-                  Center(child: Text("Interview"),),
-                  Center(child: Text("Offered"),),
-                  Center(child: Text("Rejected"),),
-                ],
-              ),
-            ),
+            _search(),
           ],
         ),
-      ),
     );
+  }
+
+  Container _search() {
+    return Container(
+            margin: EdgeInsets.only(top: 40, left: 20, right: 20),
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  // ignore: deprecated_member_use
+                  color: Color(0xff8796BD).withOpacity(0.11),
+                  blurRadius: 40,
+                  spreadRadius: 0.0,
+                )
+              ]
+            ),
+            child: TextField(
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
+                contentPadding: EdgeInsets.all(15),
+                hintText: 'Search jobs..',
+                prefixIcon: Icon(Icons.search),
+                suffixIcon: Container(
+                  width: 100,
+                  child: IntrinsicHeight(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        VerticalDivider(
+                          color: Colors.black,
+                          indent: 10,
+                          endIndent: 10,
+                          thickness: 0.1,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Icon(Icons.filter_list),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
+          );
   }
 }
 
