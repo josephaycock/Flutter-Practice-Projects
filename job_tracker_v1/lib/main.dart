@@ -49,15 +49,15 @@ class _MyHomePageState extends State<MyHomePage> {
         },
           items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.work_outline),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: Icon(Icons.add_circle_outline),
               label: 'Add Jobs',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
+              icon: Icon(Icons.bar_chart_outlined),
               label: 'Stats',
             ),
           ],
@@ -69,8 +69,36 @@ class _MyHomePageState extends State<MyHomePage> {
 class HomeScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Home Screen'),
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        body: Column(
+          children: [
+            const TabBar(
+              labelStyle: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold
+              ),
+              tabs: [
+                Tab(icon: Icon(Icons.send), text: "Applied"),
+                Tab(icon: Icon(Icons.videocam), text: "Interview"),
+                Tab(icon: Icon(Icons.handshake), text: "Offered"),
+                Tab(icon: Icon(Icons.cancel_outlined), text: "Rejected"),
+              ],
+            ),
+            const Expanded(
+              child: TabBarView(
+                children: [
+                  Center(child: Text("Applied"),),
+                  Center(child: Text("Interview"),),
+                  Center(child: Text("Offered"),),
+                  Center(child: Text("Rejected"),),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
